@@ -1,0 +1,26 @@
+---
+import '../styles/global.css'
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {title, description} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta lang="en" />
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>{title}</title>
+    </head>
+    <body>
+        <Navbar />
+        <slot />
+        <Footer />
+    </body>
+</html>
