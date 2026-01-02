@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 // Getting one Item
 router.get('/:id', getItem, (req, res) => {
-    res.send(res.item.name)
+    res.send(res.item)
 })
 
 // Creating one Item
