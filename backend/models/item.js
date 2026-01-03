@@ -28,6 +28,14 @@ const itemSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    rating: {
+        type: Number,
+        default: 5.0
+    },
+    reviewCount: {
+        type: Number,
+        default: 0
+    },
     dateAdded: {
         type: Date,
         required: true,

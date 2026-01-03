@@ -1,11 +1,14 @@
 ---
 import { API_BASE_URL } from "astro:env/server"
+import { getAllItems } from "../../../Utils/callAPI"
+import ItemDetails from "../../components/ItemDetails"
 import axios from "axios"
+import Layout from "../../layouts/Layout.astro"
 export async function getStaticPaths() {
     try{
         // Fetch slugs
-        const { data } = await axios.get(`${API_BASE_URL}/items`)
-        const arr = Array.from({ length: data.length }, (_, i) => data[i]._id)
+        const items  = await getAllItems()
+        const arr = Array.from({ length: items.length }, (_, i) => items[i]._id)
 
         const slugs = [
             ...arr
@@ -37,8 +40,8 @@ export async function getStaticPaths() {
 const {data} = Astro.props
 const {slug} = Astro.params
 ---
-{data && <div>
-    <h1>{data._id}</h1>
-    <h2>{data.name}</h2>
-    <p>{data.description}</p>
-</div>}
+<Layout title={data.name}>
+    {data && <div>
+        <ItemDetails item={data}/>
+    </div>}
+</Layout>
