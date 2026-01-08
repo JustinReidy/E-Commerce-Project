@@ -76,7 +76,65 @@ export default function ItemDetails(props) {
                                 </div>
                             </fieldset>
                         </div>
+
+                        {/* Size Picker */}
+                        <div className="mt-8">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-sm font-medium text-gray-100">Size</h2>
+                                <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">See sizing chart</a>
+                            </div>
+                            <fieldset aria-label="Choose a size" className="mt-2">
+                                    <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                                        {item.sizes.map((size) => (
+                                            <label key={size} aria-label={size} className="group relative flex items-center justify-center rounded-md border border-gray-300  p-3 has-checked:border-indigo-600 has-checked:bg-indigo-600 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-indigo-600 has-disabled:border-gray-400 has-disabled:bg-gray-200 has-disabled:opacity-25">
+                                                <input type="radio" defaultValue={size} defaultChecked = {size} name="size"  className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed" />
+                                                <span className="text-sm font-medium text-gray-100 uppercase group-has-checked:text-white">{size.toUpperCase()}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                            </fieldset>
+                        </div>
+
+                        <button type="submit" className="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+                            Add to Cart
+                        </button>
                     </form>
+
+                    {/* Product Details */}
+                    <div className="mt-10">
+                        <h2 className="text-sm font-medium text-gray-100">Description</h2>
+                        <div dangerouslySetInnerHTML={{__html: item.description}} className="mt-4 space-y-4 text-sm/6 text-gray-500" />
+                    </div>
+                    <div className="mt-8 border-t border-gray-200 pt-8">
+                        <h2 className="text-sm font-medium text-gray-100">Fabric &amp; Care</h2>
+
+                        {/* <div className="mt-4">
+                            <ul role="list" className="list-disc space-y-1 pl-5 text-sm/6 text-gray-500 marker:text-gray-300">
+                                {product.details.map((item) => (
+                                <li key={item} className="pl-2">
+                                    {item}
+                                </li>
+                                ))}
+                            </ul>
+                        </div> */}
+                    </div>
+
+                    {/* Policies */}
+                    <section aria-labelledby="policies-heading" className="mt-10">
+                        <h2 id="policies-heading" className="sr-only">Our Policies</h2>
+
+                        <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                            {/* {policies.map((policy) => (
+                                <div key={policy.name} className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+                                <dt>
+                                    <policy.icon aria-hidden="true" className="mx-auto size-6 shrink-0 text-gray-400" />
+                                    <span className="mt-4 text-sm font-medium text-gray-900">{policy.name}</span>
+                                </dt>
+                                <dd className="mt-1 text-sm text-gray-500">{policy.description}</dd>
+                                </div>
+                            ))} */}
+                        </dl>
+                    </section>
                 </div>
             </div>
         </div>
