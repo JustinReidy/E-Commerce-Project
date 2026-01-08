@@ -1,0 +1,47 @@
+---
+import { API_BASE_URL } from "astro:env/server"
+import { getAllItems } from "../../../Utils/callAPI"
+import ItemDetails from "../../components/ItemDetails"
+import axios from "axios"
+import Layout from "../../layouts/Layout.astro"
+export async function getStaticPaths() {
+    try{
+        // Fetch slugs
+        const items  = await getAllItems()
+        const arr = Array.from({ length: items.length }, (_, i) => items[i]._id)
+
+        const slugs = [
+            ...arr
+        ]
+
+        // Fetch details for each slug
+        const paths = await Promise.all(
+            slugs.map(async (slug) => {
+                try {
+                    const response: any = await axios.get(`${API_BASE_URL}/items/${slug}`)
+                    return {
+                        params: {slug},
+                        props: {data: response.data, slugs}
+                    }
+                } catch (err: any) {
+                    console.error(`Failed to fetch details for slug: ${slug}`),
+                    err.message
+                }
+                return { params: {slug}, props: {data: null, slugs}}
+            })
+        )
+        return paths
+    } catch(err: any) {
+        console.error('Failed to fetch random slugs:', err.message)
+        return []
+    }
+}
+ 
+const {data} = Astro.props
+const {slug} = Astro.params
+---
+<Layout title={data.name}>
+    {data && <div>
+        <ItemDetails item={data}/>
+    </div>}
+</Layout>

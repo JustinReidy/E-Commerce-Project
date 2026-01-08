@@ -12,15 +12,17 @@ router.get('/', async (req, res) => {
     }
 })
 
+const reviewRouter = require('../routes/reviews')
+router.use('/:id/reviews', reviewRouter)
 // Getting one Item
 router.get('/:id', getItem, (req, res) => {
-    res.send(res.item.name)
+    res.send(res.item)
 })
+
 
 // Creating one Item
 router.post('/', async (req, res) => {
     const {imageUrl, imageAlt, name, colors, sizes, price, description} = req.body
-    console.log(sizes)
     const item = new Item({
         imageUrl: imageUrl,
         imageAlt: imageAlt,
@@ -35,7 +37,7 @@ router.post('/', async (req, res) => {
         const newItem = await item.save()
         res.status(201).json(newItem)
     } catch (err) {
-        res.status(400).json({message: err.message})
+        res.status(400).json({ message: err.message })
     }
 })
 
