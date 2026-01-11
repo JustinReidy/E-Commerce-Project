@@ -45,7 +45,7 @@ export default function Example() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-white">
+          <a href="http://localhost:3000/auth/login" className="text-sm/6 font-semibold text-white">
             Log in
           </a>
         </div>

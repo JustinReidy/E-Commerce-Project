@@ -1,8 +1,8 @@
 const stats = [
-  { id: 1, name: 'Creators on the platform', value: '8,000+' },
-  { id: 2, name: 'Flat platform fee', value: '3%' },
-  { id: 3, name: 'Uptime guarantee', value: '99.9%' },
-  { id: 4, name: 'Paid out to creators', value: '$70M' },
+  { id: 1, name: 'Assholes on the platform', value: '8,000+' },
+  { id: 2, name: 'Flat asshole fee', value: '3%' },
+  { id: 3, name: 'Asshole guarantee', value: '99.9%' },
+  { id: 4, name: 'Paid out to assholes', value: '$70M' },
 ]
 
 export default function StatsGrid() {
@@ -12,7 +12,7 @@ export default function StatsGrid() {
         <div className="mx-auto max-w-2xl lg:max-w-none">
           <div className="text-center">
             <h2 className="text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
-              Trusted by creators worldwide
+              Trusted by assholes worldwide
             </h2>
             <p className="mt-4 text-lg/8 text-gray-300">Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
           </div>
