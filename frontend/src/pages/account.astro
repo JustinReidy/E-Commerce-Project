@@ -1,0 +1,27 @@
+---
+export const prerender = false
+import Layout from "../layouts/Layout.astro";
+
+// Fetch current user
+let user = null
+try {
+    const cookie = Astro.request.headers.get('cookie') ?? ''
+    console.log(cookie)
+
+    const response = await fetch('http://localhost:3000/auth/me', {credentials: 'include', headers: {'Cookie': cookie}})
+    console.log(response)
+    if (response.ok) {
+        const data = await response.json()
+        user = data.user
+    } else {
+        return Astro.redirect('/login')
+    }
+} catch(err) {
+    return Astro.redirect('/login')
+}
+---
+<Layout title="My Account" >
+<div>
+    test
+</div>
+</Layout>
